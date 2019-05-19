@@ -1,0 +1,16 @@
+<% if (locals.accountDetails) { %>
+	<h1>Account Overview</h1>
+	<h2>Rekeningnummer</h2>
+	<p><%= accountDetails.accountNumber %></p>
+	<h2>Saldo</h2>
+	<p><%= accountDetails.amount %> <%= accountDetails.currency %><p>
+  <% } %>
+
+  <% if (locals.transactions) { %>
+	<h1>Transactions</h1>
+	<ul>
+		<% transactions.forEach(function(transaction) { %>
+			<li><%= transaction.amount %> - <%= transaction.bookDate %></li>
+		<% }); %>
+	</ul>
+  <% } %>
