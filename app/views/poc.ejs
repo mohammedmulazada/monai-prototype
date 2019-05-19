@@ -1,0 +1,23 @@
+<!-- <% include ./partials/head.ejs %> -->
+
+<% if (locals.accountDetails) { %>
+<h1>Account Overview</h1>
+<h2>Rekeningnummer</h2>
+<p><%= accountDetails.accountNumber %></p>
+<h2>Saldo</h2>
+<p><%= accountDetails.amount %> <%= accountDetails.currency %></p>
+<p>
+    <% } %> <% if (locals.transactions) { %>
+</p>
+
+<h1>Transactions</h1>
+<ul>
+    <% transactions.forEach(function(transaction) { %>
+    <li><%= transaction.amount %> - <%= transaction.bookDate %></li>
+    <% }); %>
+</ul>
+else <% { %>
+<h1>No account data found</h1>
+<%} %> <% } %>
+
+<!-- <% include ./partials/foot.ejs %> -->
