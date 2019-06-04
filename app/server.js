@@ -3,18 +3,32 @@ const ENV = require('dotenv').config({
 	path: './config/.env'
 }).parsed
 const bodyParser = require('body-parser')
+const url = require('url')
 const app = express()
 const fs = require('fs')
+const session = require('express-session')
 const PORT = ENV.NODE_ENV === 'production' ? ENV.PORT : ENV.DEV_PORT
 
 const https = require('https')
 const request = require('request')
+
+const routes = {
+	home: '/',
+	auth: '/auth',
+	overview: '/overview',
+}
 
 app.set('views', __dirname+'/views')
 app.set('view engine', 'ejs')
 
 app.use(express.static('public'))
 app.use(express.static('app/views'))
+app.use(session({
+	secret: 'keyboard cat',
+	resave: false,
+	saveUninitialized: true,
+	cookie: { secure: true }
+  }))
 app.use(bodyParser.urlencoded({
 	extended: false
 }))
@@ -40,15 +54,12 @@ app.get('*', (req, res, next) => {
 
 })
 
-// app.get('/', (req, res) => {
-// 	res.render('index')
-// })
 
-app.get('/', (req, res) => {
+app.get(routes.home, (req, res) => {
 	res.redirect('https://auth-sandbox.connect.abnamro.com/as/authorization.oauth2?scope=psd2:account:balance:read+psd2:account:transaction:read+psd2:account:details:read&client_id=TPP_test&response_type=code&flow=code&redirect_uri=https://localhost/auth&bank=NLAA01&state=SilverAdministration-123')
 })
 
-app.get('/auth', (req, res) => {
+app.get(routes.auth, (req, res) => {
 	const { code } = req.query
 
 	const options = {
@@ -59,9 +70,9 @@ app.get('/auth', (req, res) => {
 		strictSSL: false,
 		form: {
 			grant_type:'authorization_code',
-			client_id: 'TPP_test',
+			client_id: ENV.CLIENTID,
 			code,
-			redirect_uri: 'https://localhost/auth'
+			redirect_uri: url.resolve(ENV.DOMAIN, routes.auth)
 		},
 		headers: {
 			'Cache-Control': 'no-cache',
@@ -94,6 +105,7 @@ app.get('/auth', (req, res) => {
 					return
 				}
 				const parsed = JSON.parse(body)
+				console.log(parsed, 'parsed')
 				const { iban } = parsed
 
 				if (iban) {
@@ -152,7 +164,7 @@ app.get('/auth', (req, res) => {
 					request.get(options, (err, httpResponse, body) => {
 						if (err) {
 							return
-						}
+						}      
 
 						const parsed = JSON.parse(body)
 						const { accountNumber, currency, amount } = parsed
@@ -169,7 +181,9 @@ app.get('/poc', (req, res) => {
 	res.render('poc')
 })
 
-app.get('/overview', (req, res) => {
+app.get(routes.overview, (req, res) => {
+	req.session.views = !req.session.views ? 1 : req.session.views + 1
+	console.log(req.sessionID, req.session)
 	res.render('overview')
 })
 
