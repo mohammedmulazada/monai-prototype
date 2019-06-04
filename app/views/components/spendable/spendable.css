@@ -1,0 +1,60 @@
+#spendable {
+	background: transparent;
+	padding: 2rem;
+	.spendables {
+		display: flex;
+		.spendable {
+			margin: 1rem 1.75rem;
+			position: relative;
+			.spendable__desc {
+				text-align: center;
+				width: 100%;
+				display: block;
+				padding: 0.5rem 0;
+			}
+			.spendable__float {
+				position: absolute;
+				top: -18.4px;
+				right: 0;
+				z-index: 0;
+				transform: translateX(calc(1rem + 100%)) translateY(0);
+				transition: 0.5s ease-out all;
+				&::after {
+					content: "";
+					border-bottom: 1px solid black;
+					width: calc(100% + 4.75rem);
+					position: absolute;
+					right: 0;
+					bottom: 0;
+				}
+			}
+			.spendable__ball {
+				border-radius: 50%;
+				height: 7.5rem;
+				width: 7.5rem;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+				overflow: hidden;
+				position: relative;
+				background: gray;
+				z-index: 1;
+				> * {
+					position: absolute;
+				}
+				.ball__progress {
+					width: 100%;
+					height: 100%;
+					background: rgba(255, 255, 255, 0.5);
+					opacity: 0.5;
+					transition: 0.3s ease-out all;
+					bottom: 0;
+					left: 0;
+				}
+				.ball__amount {
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+			}
+		}
+	}
+}

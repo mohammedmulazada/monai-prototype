@@ -1,0 +1,91 @@
+#graphy {
+	margin: auto;
+	padding: 2rem;
+	> span {
+		color: rgba(220, 220, 220, 1);
+		padding: 0.25rem;
+		display: block;
+	}
+	ol {
+		list-style: none;
+		padding: 0.5rem;
+		max-width: 35rem;
+		.graph__bars {
+			display: flex;
+			justify-content: space-between;
+			width: 22.5rem;
+			position: absolute;
+			left: 7.66rem;
+			bottom: 8.3rem;
+			align-items: end;
+			.bars__bar {
+				width: 2rem;
+				position: relative;
+				height: 10rem;
+				background: rgba(200, 200, 200, 1);
+				overflow: hidden;
+				.bar__progress {
+					background: #abc;
+					width: 2rem;
+					height: 7.5rem;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+				}
+			}
+		}
+		.graph__y {
+			display: flex;
+			flex-direction: column-reverse;
+			div {
+				position: relative;
+				display: inline-block;
+				&::after,
+				&:first-child::before {
+					position: absolute;
+					left: 4rem;
+					bottom: 40px;
+					content: "";
+					display: block;
+					width: 25rem;
+					border-bottom: 1px solid rgba(220, 220, 220, 1);
+				}
+				&:first-child::before {
+					bottom: 0;
+				}
+			}
+		}
+		.graph__x {
+			padding: 0.5rem;
+			padding-left: 4.5rem;
+			div {
+				color: black;
+				background: rgba(220, 220, 220, 1);
+				border-radius: 50%;
+				display: inline-block;
+				text-align: center;
+				padding: 0.33rem;
+				font-size: 0.66rem;
+				width: 2rem;
+				height: 2rem;
+				transition: 0.3s ease all;
+				line-height: 1rem;
+				margin: 0.25rem;
+				position: relative;
+				&:hover {
+					color: white;
+					background: black;
+				}
+				&.payday::after {
+					content: "💰";
+					display: block;
+					position: absolute;
+					left: 50%;
+					bottom: -1.5rem;
+					font-size: 1rem;
+					transform: translateX(-50%);
+				}
+			}
+		}
+	}
+}
