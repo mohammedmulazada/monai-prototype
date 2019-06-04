@@ -1,4 +1,4 @@
-<!-- <% include ./partials/head.ejs %> -->
+<% include ./partials/head.ejs %>
 
 <% if (locals.accountDetails) { %>
 <h1>Account Overview</h1>
@@ -20,4 +20,7 @@
     <h1>No account details found.</h1>
  <% } %>
 
-<!-- <% include ./partials/foot.ejs %> -->
+<% include ./components/spendable/spendable.ejs %>
+<% include ./components/graphy/graphy.ejs %>
+
+<% include ./partials/foot.ejs %>

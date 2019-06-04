@@ -33,3 +33,178 @@ body {
 		margin: 0;
 		margin-top: 8px;
 	}
+
+#spendable {
+	background: transparent;
+	padding: 2rem;
+}
+
+#spendable .spendables {
+		display: flex;
+	}
+
+#spendable .spendables .spendable {
+			margin: 1rem 1.75rem;
+			position: relative;
+		}
+
+#spendable .spendables .spendable .spendable__desc {
+				text-align: center;
+				width: 100%;
+				display: block;
+				padding: 0.5rem 0;
+			}
+
+#spendable .spendables .spendable .spendable__float {
+				position: absolute;
+				top: -18.4px;
+				right: 0;
+				z-index: 0;
+				transform: translateX(calc(1rem + 100%)) translateY(0);
+				transition: 0.5s ease-out all;
+			}
+
+#spendable .spendables .spendable .spendable__float::after {
+					content: "";
+					border-bottom: 1px solid black;
+					width: calc(100% + 4.75rem);
+					position: absolute;
+					right: 0;
+					bottom: 0;
+				}
+
+#spendable .spendables .spendable .spendable__ball {
+				border-radius: 50%;
+				height: 7.5rem;
+				width: 7.5rem;
+				box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.15);
+				overflow: hidden;
+				position: relative;
+				background: gray;
+				z-index: 1;
+			}
+
+#spendable .spendables .spendable .spendable__ball > * {
+					position: absolute;
+				}
+
+#spendable .spendables .spendable .spendable__ball .ball__progress {
+					width: 100%;
+					height: 100%;
+					background: rgba(255, 255, 255, 0.5);
+					opacity: 0.5;
+					transition: 0.3s ease-out all;
+					bottom: 0;
+					left: 0;
+				}
+
+#spendable .spendables .spendable .spendable__ball .ball__amount {
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+				}
+
+#graphy {
+	margin: auto;
+	padding: 2rem;
+}
+
+#graphy > span {
+		color: rgba(220, 220, 220, 1);
+		padding: 0.25rem;
+		display: block;
+	}
+
+#graphy ol {
+		list-style: none;
+		padding: 0.5rem;
+		max-width: 35rem;
+	}
+
+#graphy ol .graph__bars {
+			display: flex;
+			justify-content: space-between;
+			width: 22.5rem;
+			position: absolute;
+			left: 7.66rem;
+			bottom: 8.3rem;
+			align-items: end;
+		}
+
+#graphy ol .graph__bars .bars__bar {
+				width: 2rem;
+				position: relative;
+				height: 10rem;
+				background: rgba(200, 200, 200, 1);
+				overflow: hidden;
+			}
+
+#graphy ol .graph__bars .bars__bar .bar__progress {
+					background: #abc;
+					width: 2rem;
+					height: 7.5rem;
+					position: absolute;
+					bottom: 0;
+					left: 0;
+				}
+
+#graphy ol .graph__y {
+			display: flex;
+			flex-direction: column-reverse;
+		}
+
+#graphy ol .graph__y div {
+				position: relative;
+				display: inline-block;
+			}
+
+#graphy ol .graph__y div::after,
+				#graphy ol .graph__y div:first-child::before {
+					position: absolute;
+					left: 4rem;
+					bottom: 40px;
+					content: "";
+					display: block;
+					width: 25rem;
+					border-bottom: 1px solid rgba(220, 220, 220, 1);
+				}
+
+#graphy ol .graph__y div:first-child::before {
+					bottom: 0;
+				}
+
+#graphy ol .graph__x {
+			padding: 0.5rem;
+			padding-left: 4.5rem;
+		}
+
+#graphy ol .graph__x div {
+				color: black;
+				background: rgba(220, 220, 220, 1);
+				border-radius: 50%;
+				display: inline-block;
+				text-align: center;
+				padding: 0.33rem;
+				font-size: 0.66rem;
+				width: 2rem;
+				height: 2rem;
+				transition: 0.3s ease all;
+				line-height: 1rem;
+				margin: 0.25rem;
+				position: relative;
+			}
+
+#graphy ol .graph__x div:hover {
+					color: white;
+					background: black;
+				}
+
+#graphy ol .graph__x div.payday::after {
+					content: "💰";
+					display: block;
+					position: absolute;
+					left: 50%;
+					bottom: -1.5rem;
+					font-size: 1rem;
+					transform: translateX(-50%);
+				}
