@@ -15,8 +15,8 @@
 			justify-content: space-between;
 			width: 22.5rem;
 			position: absolute;
-			left: 7.66rem;
-			bottom: 8.3rem;
+			left: 9.6rem;
+			bottom: 10.3rem;
 			align-items: end;
 			.bars__bar {
 				width: 2rem;
@@ -24,10 +24,11 @@
 				height: 10rem;
 				background: rgba(200, 200, 200, 1);
 				overflow: hidden;
+				transition: 0.3s ease-out all;
 				.bar__progress {
 					background: #abc;
 					width: 2rem;
-					height: 7.5rem;
+					height: 100%;
 					position: absolute;
 					bottom: 0;
 					left: 0;
@@ -40,6 +41,7 @@
 			div {
 				position: relative;
 				display: inline-block;
+				line-height: 4.35rem;
 				&::after,
 				&:first-child::before {
 					position: absolute;
@@ -72,7 +74,7 @@
 				line-height: 1rem;
 				margin: 0.25rem;
 				position: relative;
-				&:hover {
+				&:first-of-type {
 					color: white;
 					background: black;
 				}
