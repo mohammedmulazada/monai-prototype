@@ -42,7 +42,7 @@
 		"body-parser": "^1.18.3",
     "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "http-signature": "^1.2.0",
     "request": "^2.88.0"
 	},
